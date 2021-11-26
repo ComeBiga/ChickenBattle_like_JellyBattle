@@ -65,6 +65,7 @@ public class CheckSamePosition : MonoBehaviour
     /// </summary>
     public void CheckOverlap()
     {
+        // 모든 플레이어를 받아오는 코드
         PlayerManager pm = GetComponent<PlayerManager>();
         players = new Player[pm.players.Length];
         Debug.Log(pm.players.Length);
@@ -74,27 +75,32 @@ public class CheckSamePosition : MonoBehaviour
             players[i] = pm.players[i];
         }
 
-        overlapPlayers = new List<Dictionary<Vector3, List<Player>>>();
-
+        // 각 위치 당 플레이어 리스트를 저장하는 딕셔너리 변수
         Dictionary<Vector3, List<Player>> allPlayer = new Dictionary<Vector3, List<Player>>();
 
         foreach (Player player in players)
         {
+            // 같은 위치에 저장된 플레이어가 있을 때
             List<Player> existing;
-
+            
             if(allPlayer.TryGetValue(player.NextPos, out existing))
             {
                 existing.Add(player);
                 allPlayer[player.NextPos] = existing;
                 //allPlayer.Add(player.GetComponent<Player>().nextPos, existing);
             }
+            // 같은 위치에 저장된 플레이어가 없을 때
             else
             {
                 allPlayer.Add(player.NextPos, new List<Player>() { player });
             }
         }
 
-        foreach(KeyValuePair<Vector3, List<Player>> pair in allPlayer)
+        // 겹치는 플레이어들의 정보가 담긴 리스트를 매턴 초기화
+        overlapPlayers = new List<Dictionary<Vector3, List<Player>>>();
+
+        // 둘 이상 겹친 위치의 플레이어 리스트를 저장
+        foreach (KeyValuePair<Vector3, List<Player>> pair in allPlayer)
         {
             if(pair.Value.Count >= 2)
             {
@@ -102,6 +108,7 @@ public class CheckSamePosition : MonoBehaviour
                 newDic.Add(pair.Key, pair.Value);
                 overlapPlayers.Add(newDic);
 
+                // 오버랩을 처리하는 메소드를 실행시키기 위한 변수
                 isOverlaped = true;
                 //overlapPlayers.Add(pair.Value);
             }
@@ -158,6 +165,7 @@ public class CheckSamePosition : MonoBehaviour
             {
                 foreach (KeyValuePair<Vector3, List<Player>> overlaped in dic)
                 {
+                    // Top, Down, Left, Right에 저장시키기 위한 배열, [0]이면 Top
                     locations = new List<Player>[4];
                     
                     for (int i = 0; i < 4; i++)
@@ -168,11 +176,13 @@ public class CheckSamePosition : MonoBehaviour
                     Vector3 nextPos = overlaped.Key;
                     List<Player> ol = overlaped.Value;
 
+                    // 목표 위치의 y절편 값
                     int bPositive = (int)(nextPos.y - nextPos.x);
                     int bNegative = (int)(nextPos.y + nextPos.x);
 
                     foreach(Player player in ol)
                     {
+                        // 플레이어 위치의 y절편 값
                         Vector3 playerPos = player.transform.position;
                         int yPositive = (int)(playerPos.y - playerPos.x);
                         int yNegative = (int)(playerPos.y + playerPos.x);
@@ -212,10 +222,12 @@ public class CheckSamePosition : MonoBehaviour
         Debug.Log("Start of Saparate()");
         if (!locations.Any(list => list.Count >= 2)) return false;
         
+        // 겹친 위치의 플레이어 리스트
         var oLoc = locations.First(list => list.Count >= 2);
         Debug.Log(oLoc.Count);
         Debug.Log(oLoc);
 
+        // 빈 위치의 인덱스 값
         int emptyIndex = -1;
 
         for(int i = 0; i < 4; i++)
@@ -227,26 +239,35 @@ public class CheckSamePosition : MonoBehaviour
             }
         }
 
+        // 빈 위치에 플레이어를 옮김
         Player movePlayer = new Player();
         Debug.Log("Before Switch");
         switch(emptyIndex)
         {
+            // Top으로 옮김
             case 0:
+                // 겹친 위치의 플레이어 중 y가 가장 큰 플레이어를 선택
                 movePlayer = oLoc.OrderByDescending(player => player.transform.position.y).First();
                 locations[0].Add(movePlayer);
                 oLoc.Remove(movePlayer);
                 break;
+            // Left
             case 1:
+                // 겹친 위치의 플레이어 중 x가 가장 작은 플레이어를 선택
                 movePlayer = oLoc.OrderBy(player => player.transform.position.x).First();
                 locations[1].Add(movePlayer);
                 oLoc.Remove(movePlayer);
                 break;
+            // Right
             case 2:
+                // 겹친 위치의 플레이어 중 x가 가장 큰 플레이어를 선택
                 movePlayer = oLoc.OrderByDescending(player => player.transform.position.x).First();
                 locations[2].Add(movePlayer);
                 oLoc.Remove(movePlayer);
                 break;
+            // Down
             case 3:
+                // 겹친 위치의 플레이어 중 y가 가장 작은 플레이어를 선택
                 movePlayer = oLoc.OrderBy(player => player.transform.position.y).First();
                 locations[3].Add(movePlayer);
                 oLoc.Remove(movePlayer);
@@ -257,6 +278,7 @@ public class CheckSamePosition : MonoBehaviour
         return true;
     }
 
+    // 플레이어 포지션을 옮겨줌
     private void RePositionOverlapPlayersNew(List<Player>[] result)
     {
         Player[] locations = new Player[4];
@@ -297,6 +319,7 @@ public class CheckSamePosition : MonoBehaviour
         resultLocated.Add(locations);
     }
 
+    #region Unused Code
     /// <summary>
     /// Player의 원래의 nextPos를 찾아낸다.
     /// </summary>
@@ -416,6 +439,7 @@ public class CheckSamePosition : MonoBehaviour
             isOverlaped = false;
         }
     }
+    #endregion
 
     public void RandomPositionWinnerNew()
     {

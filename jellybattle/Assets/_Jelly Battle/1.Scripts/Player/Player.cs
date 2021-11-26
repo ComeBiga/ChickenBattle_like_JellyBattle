@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public PhotonView photonView;
     #endregion
 
+    #region PlayerInfo
     // Player Info
     [SerializeField]
     private PlayerType type;
@@ -115,6 +116,8 @@ public class Player : MonoBehaviour
 
         InitPlayer();
     }
+
+    #endregion
 
     #region Initialization
 
@@ -264,6 +267,9 @@ public class Player : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Item
     [PunRPC]
     private void UpdateBuffSlotUIRPC(int imageCode, string count, int slotIndex)
     {
@@ -303,6 +309,7 @@ public class Player : MonoBehaviour
             ClearSlot(i);
         }
     }
+    #endregion
 
     #region Health
     [PunRPC]
@@ -377,6 +384,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region UI
     [PunRPC]
     private void SetKeyCapAttackedUIRPC(float x, float y, bool value)
     {

@@ -106,6 +106,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    delegate void TurnState();
+    TurnState _currentState;
+
+    private void UpdateState()
+    {
+        _currentState();
+    }
+
     #region State
     void EntranceState()
     {
@@ -124,6 +132,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         //Debug.Log("BeforeSelectingState()");
         SetStateTime(GameStateTime.instance.selectingTime);
 
+        //_currentState = SelectingState;
         SetCurrentState(State.Selecting);
     }
 
