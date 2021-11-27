@@ -55,8 +55,10 @@ public class CheckSamePosition : MonoBehaviour
 
     public void HandleOverlap()
     {
+        // 겹치는 지 확인하는 함수
         CheckOverlap();
 
+        // 겹친다면 위치를 지정해주는 함수
         LocateOverlapedPlayers();
     }
 
@@ -115,6 +117,7 @@ public class CheckSamePosition : MonoBehaviour
         }
     }
 
+    #region Unused Code
     private void CheckOverlapNew()
     {
         
@@ -151,6 +154,7 @@ public class CheckSamePosition : MonoBehaviour
             }
         }
     }
+    #endregion
 
     /// <summary>
     /// nextPos가 겹치는 플레이어들을 상, 하, 좌, 우 각 구역으로 나눠놓음
@@ -203,6 +207,7 @@ public class CheckSamePosition : MonoBehaviour
 
                     Debug.Log("Before Separate()");
 
+                    // 같은 방향에서 온 플레이어를 다시 재배치
                     while (SeparateOverlapedPlayers()) { Debug.Log(wreck); if (wreck++ > 10) { wreck = 0; break; } }
 
                     Debug.Log("after SeparateOverLapedPlayers()");
