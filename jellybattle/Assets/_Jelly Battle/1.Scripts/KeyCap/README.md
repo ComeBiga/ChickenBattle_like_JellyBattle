@@ -3,7 +3,7 @@
 ![Kc](https://user-images.githubusercontent.com/36800639/153057137-54efa9dd-4560-4014-a46b-ea02263281f9.png)
 
 아이템은 구현은 다양해지지만 사용방식은 같기 때문에 위와 같은 구조로 디자인했습니다.
-## [전체 코드]()
+## [전체 코드](https://github.com/ComeBiga/ChickenBattle_like_JellyBattle/tree/main/jellybattle/Assets/_Jelly%20Battle/1.Scripts/KeyCap)
 ## 주요 코드
 ### KeyCap.cs
 ```c#
