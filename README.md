@@ -12,4 +12,4 @@ __사용 라이브러리__ : Photon Pun(네트워크)
 ## 주요 코드
 + ### [Network(Photon Pun)](https://github.com/ComeBiga/ChickenBattle_like_JellyBattle/blob/main/jellybattle/Assets/_Jelly%20Battle/1.Scripts/Network/README.md)
 + ### [Item](https://github.com/ComeBiga/ChickenBattle_like_JellyBattle/blob/main/jellybattle/Assets/_Jelly%20Battle/1.Scripts/KeyCap/README.md)
-+ ###
++ ### [CheckSamePosition](https://github.com/ComeBiga/ChickenBattle_like_JellyBattle/blob/main/jellybattle/Assets/_Jelly%20Battle/1.Scripts/Managers/README.md)
