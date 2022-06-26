@@ -1,4 +1,4 @@
-# ChickenBattle ([https://youtu.be/POzT16Ln8UU](https://youtu.be/POzT16Ln8UU))
+# ChickenBattle
 ![인게임](https://user-images.githubusercontent.com/36800639/153047101-d5af93e1-2766-440f-a450-f1ba60ef80ef.png)
 
 이 게임은 보드판 형식의 전략 게임입니다. pvp 멀티플레이 게임입니다.
