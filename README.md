@@ -1,5 +1,6 @@
 # ChickenBattle
-<img src="https://user-images.githubusercontent.com/36800639/153047101-d5af93e1-2766-440f-a450-f1ba60ef80ef.png"  width="250" height="550"/>
+
+![인게임_1](https://github.com/ComeBiga/ChickenBattle_like_JellyBattle/assets/36800639/070dde61-e5ba-4517-8ac5-94ea463986d0)
 
 이 게임은 보드판 형식의 전략 게임입니다. pvp 멀티플레이 게임입니다.
 
